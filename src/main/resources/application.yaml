@@ -1,0 +1,4 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://root:root1234@ds115166.mlab.com:15166/weatherbot

@@ -33,6 +33,14 @@ class WeatherImgProvider(
 		return matcher.group()
 	}
 
+	/**
+	 * Gets photo content;
+	 * TODO if possible, get input stream and write it to the TG API
+	 */
+	fun getPhotoContent(): ByteArray {
+		return restTemplate.getForObject(getPhotoUrl())
+	}
+
 	/*
 	TODO Хранить результат в виде картинки как результат работы, а не как сейчас - хранится весь ответ
 	 */

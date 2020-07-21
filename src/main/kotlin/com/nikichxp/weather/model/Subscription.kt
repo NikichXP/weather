@@ -1,6 +1,10 @@
 package com.nikichxp.weather.model
 
-class Subscription(
-		var userId: String,
-		var station: String
-)
+import org.springframework.data.mongodb.core.index.Indexed
+
+data class Subscription(
+        var userId: String,
+        @Indexed var station: String
+) {
+    var id = "$station-$userId"
+}
