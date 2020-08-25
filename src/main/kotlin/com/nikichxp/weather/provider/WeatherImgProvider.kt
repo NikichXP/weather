@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
 import org.springframework.web.client.getForObject
 import java.time.LocalDateTime
+import java.util.logging.Logger
 import java.util.regex.Pattern
 import javax.annotation.PostConstruct
 
@@ -15,14 +16,8 @@ class WeatherImgProvider(
 	private val responseMap = mutableMapOf<String, ResponseStatus>()
 	var response = ""
 
-
-	@PostConstruct
-	fun test() {
-		println(getPhotoUrl())
-	}
-
 	fun getPhotoUrl(station: String = "UKBB"): String {
-		return "http://meteoinfo.by/radar/UKBB/${getPhotoName(station)}"
+		return "http://meteoinfo.by/radar/$station/${getPhotoName(station)}"
 	}
 
 	fun getPhotoName(station: String): String {
@@ -37,8 +32,8 @@ class WeatherImgProvider(
 	 * Gets photo content;
 	 * TODO if possible, get input stream and write it to the TG API
 	 */
-	fun getPhotoContent(): ByteArray {
-		return restTemplate.getForObject(getPhotoUrl())
+	fun getPhotoContent(url: String): ByteArray {
+		return restTemplate.getForObject(url)
 	}
 
 	/*

@@ -12,9 +12,7 @@ class TelegramSender(
 
 	private val botId = "1390933695:AAHXa0-29rEKuPoNeCOA7Jx6mfYBKN-QzWo"
 	private val botAPI = "https://api.telegram.org/bot$botId"
-
-
-
+	
 	fun sendMessage(to: String, text: String) {
 		val request = "$botAPI/sendMessage?chat_id=$to&text=$text"
 		restTemplate.getForObject<Any>(request)
